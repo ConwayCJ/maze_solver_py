@@ -22,6 +22,7 @@ class Maze ():
     
     self._cells = []
     self._create_cells()
+    self._break_entrance_and_exit()
 
   def _create_cells(self):
     print("Creating cells")
@@ -48,3 +49,13 @@ class Maze ():
       return
     self._win.redraw()
     time.sleep(0.05)
+
+  def _break_entrance_and_exit(self):
+    last_col = len(self._cells) - 1
+    last_row = len(self._cells[last_col]) - 1
+    
+    self._cells[0][0].has_top_wall = False
+    self._cells[0][0].has_left_wall = False
+
+    self._cells[last_col][last_row].has_right_wall = False
+    self._cells[last_col][last_row].has_bottom_wall = False
