@@ -24,20 +24,24 @@ class Maze ():
     self._create_cells()
 
   def _create_cells(self):
+    print("Creating cells")
     for i in range(self._num_cols):
+      cell_row = []
       for j in range(self._num_rows):
         x1 = self._x1 + i * self._cell_size_x
         y1 = self._y1 + j * self._cell_size_y
         x2 = x1 + self._cell_size_x
         y2 = y1 + self._cell_size_y
         print("Appending a cell", x1,y1,x2,y2)
-        self._cells.append(Cell(self._win, x1,y1,x2,y2))
+        cell_row.append(Cell(self._win, x1,y1,x2,y2))
+      self._cells.append(cell_row)
     print("Done")
 
   def _draw_cell(self):
-    for cell in self._cells:
-      cell.draw()
-      self._animate()
+    for row in self._cells:
+      for col in row:
+        col.draw()
+        self._animate()
 
   def _animate(self):
     if self._win is None:
